@@ -23,7 +23,8 @@ wss.on("connection", (ws) => {
       );
     } else if (data.type === "call") {
       // Add a new call to the active calls list
-      activeCalls.set(callId, { callId: data.callId, from: data.from });
+      const callId = data.callId; // Unique callId
+      activeCalls.set(callId, { callId, from: data.from });
 
       // Broadcast updated active calls to all peers
       broadcastActiveCalls();
